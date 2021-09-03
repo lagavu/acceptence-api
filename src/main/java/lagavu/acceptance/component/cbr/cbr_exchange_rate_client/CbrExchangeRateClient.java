@@ -18,6 +18,18 @@ public class CbrExchangeRateClient {
         return cbrRateParser.parse(getTodayRates(), RateIdentifier.USD.getIdentifier());
     }
 
+    public float getTodayRateEurRub() {
+        return cbrRateParser.parse(getTodayRates(), RateIdentifier.EUR.getIdentifier());
+    }
+
+    public float getTodayRateChfRub() {
+        return cbrRateParser.parse(getTodayRates(), RateIdentifier.CHF.getIdentifier());
+    }
+
+    public float getTodayRateGbpRub() {
+        return cbrRateParser.parse(getTodayRates(), RateIdentifier.GBP.getIdentifier());
+    }
+
     public String getTodayRates() {
         return webClient.get()
                 .uri(properties.getUrlForCurrentRates())
