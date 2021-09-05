@@ -1,2 +1,6 @@
 /.idea/
 /target/
+/.config.swp
+/.credential.helper.swp
+/.git.swp
+/.store.swp
