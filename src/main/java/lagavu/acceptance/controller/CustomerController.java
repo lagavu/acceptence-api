@@ -2,7 +2,7 @@ package lagavu.acceptance.controller;
 
 import lagavu.acceptance.domain.customer.dto.CustomerDto;
 import lagavu.acceptance.domain.customer.entity.Customer;
-import lagavu.acceptance.domain.customer.mapper.CustomerMapper;
+import lagavu.acceptance.domain.customer.mapper.ICustomerMapper;
 import lagavu.acceptance.domain.customer.repository.ICustomerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,6 @@ public class CustomerController {
     public ResponseEntity<CustomerDto> get(@PathVariable Long id) {
         Customer customer = customerRepository.getById(id);
 
-        return new ResponseEntity<CustomerDto>(CustomerMapper.INSTANCE.toDto(customer), HttpStatus.OK);
+        return new ResponseEntity<CustomerDto>(ICustomerMapper.INSTANCE.toDto(customer), HttpStatus.OK);
     }
 }

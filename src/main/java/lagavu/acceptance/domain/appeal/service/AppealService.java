@@ -9,7 +9,7 @@ import lagavu.acceptance.domain.appeal.entity.OfflineAppeal;
 import lagavu.acceptance.domain.appeal.exception.AppealNotFoundException;
 import lagavu.acceptance.domain.appeal.exception.RegistrationAppealException;
 import lagavu.acceptance.domain.appeal.factory.AppealFactory;
-import lagavu.acceptance.domain.appeal.repository.AppealRepository;
+import lagavu.acceptance.domain.appeal.repository.IAppealRepository;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,10 +19,10 @@ import java.util.List;
 @Service
 public class AppealService {
 
-    private final AppealRepository appealRepository;
+    private final IAppealRepository appealRepository;
     private final ICbrExchangeRateClient cbrExchangeRateClient;
 
-    public AppealService(AppealRepository appealRepository, ICbrExchangeRateClient cbrExchangeRateClient) {
+    public AppealService(IAppealRepository appealRepository, ICbrExchangeRateClient cbrExchangeRateClient) {
         this.appealRepository = appealRepository;
         this.cbrExchangeRateClient = cbrExchangeRateClient;
     }

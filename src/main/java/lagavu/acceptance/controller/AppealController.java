@@ -3,7 +3,7 @@ package lagavu.acceptance.controller;
 import lagavu.acceptance.domain.appeal.dto.AppealDto;
 import lagavu.acceptance.domain.appeal.dto.request.AppealRequestDto;
 import lagavu.acceptance.domain.appeal.entity.Appeal;
-import lagavu.acceptance.domain.appeal.mapper.AppealMapper;
+import lagavu.acceptance.domain.appeal.mapper.IAppealMapper;
 import lagavu.acceptance.domain.appeal.service.AppealService;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import lagavu.acceptance.domain.customer.service.CustomerService;
@@ -27,7 +27,7 @@ public class AppealController {
     @GetMapping("/appeals")
     public ResponseEntity<List<AppealDto>> getList() {
         List<Appeal> appeals = appealService.findAll();
-        List<AppealDto> appealDtoList = AppealMapper.INSTANCE.mapAppealsToAppealDtoList(appeals);
+        List<AppealDto> appealDtoList = IAppealMapper.INSTANCE.mapAppealsToAppealDtoList(appeals);
 
         return new ResponseEntity<>(appealDtoList, HttpStatus.OK);
     }

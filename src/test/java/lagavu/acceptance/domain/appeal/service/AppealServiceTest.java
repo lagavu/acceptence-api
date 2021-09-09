@@ -12,7 +12,7 @@ import lagavu.acceptance.domain.appeal.entity.value_object.AppealType;
 import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import lagavu.acceptance.domain.appeal.exception.RegistrationAppealException;
 import lagavu.acceptance.domain.appeal.exception.UndefinedTypeAppealException;
-import lagavu.acceptance.domain.appeal.repository.AppealRepository;
+import lagavu.acceptance.domain.appeal.repository.IAppealRepository;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +34,7 @@ class AppealServiceTest {
     private AppealService appealService;
 
     @MockBean
-    private AppealRepository appealRepository;
+    private IAppealRepository appealRepository;
 
     @MockBean
     private ICbrExchangeRateClient cbrExchangeRateClient;

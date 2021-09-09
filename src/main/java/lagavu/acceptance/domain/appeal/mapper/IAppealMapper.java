@@ -13,9 +13,9 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper
-public interface AppealMapper {
+public interface IAppealMapper {
 
-    AppealMapper INSTANCE = Mappers.getMapper(AppealMapper.class);
+    IAppealMapper INSTANCE = Mappers.getMapper(IAppealMapper.class);
 
     default AppealDto toDto(Appeal appeal) {
         if(appeal instanceof CallAppeal) {

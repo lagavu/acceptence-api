@@ -1,15 +1,15 @@
 package lagavu.acceptance.domain.customer.mapper;
 
-import lagavu.acceptance.domain.appeal.mapper.AppealMapper;
+import lagavu.acceptance.domain.appeal.mapper.IAppealMapper;
 import lagavu.acceptance.domain.customer.dto.CustomerDto;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface CustomerMapper {
+public interface ICustomerMapper {
 
-    CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
+    ICustomerMapper INSTANCE = Mappers.getMapper(ICustomerMapper.class);
 
     default CustomerDto toDto(Customer customer) {
         CustomerDto customerDto = new CustomerDto();
@@ -21,7 +21,7 @@ public interface CustomerMapper {
         customerDto.setAccountId(customer.getAccountId());
         customerDto.setNumberDocument(customer.getNumberDocument());
         customerDto.setCountAppeal(customer.getAppeals().size());
-        customerDto.setAppealsDto(AppealMapper.INSTANCE.mapAppealsToAppealDtoList(customer.getAppeals()));
+        customerDto.setAppealsDto(IAppealMapper.INSTANCE.mapAppealsToAppealDtoList(customer.getAppeals()));
 
         return customerDto;
     }
