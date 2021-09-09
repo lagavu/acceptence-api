@@ -21,18 +21,21 @@ public interface AppealMapper {
         if(appeal instanceof CallAppeal) {
             CallAppealDto callAppealDto = toCallAppealDto((CallAppeal) appeal);
             callAppealDto.setType(AppealType.Values.CALL);
+            callAppealDto.setOutputSum(appeal.getOutputSum());
             return callAppealDto;
         }
 
         if(appeal instanceof FeedbackAppeal) {
             FeedbackAppealDto feedbackAppealDto = toFeedbackAppealDto((FeedbackAppeal) appeal);
             feedbackAppealDto.setType(AppealType.Values.FEEDBACK);
+            feedbackAppealDto.setOutputSum(appeal.getOutputSum());
             return feedbackAppealDto;
         }
 
         if(appeal instanceof OfflineAppeal) {
             OfflineAppealDto offlineAppealDto = toOfflineAppealDto((OfflineAppeal) appeal);
             offlineAppealDto.setType(AppealType.Values.OFFLINE);
+            offlineAppealDto.setOutputSum(appeal.getOutputSum());
             return offlineAppealDto;
         }
 

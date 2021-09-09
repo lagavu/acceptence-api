@@ -16,6 +16,8 @@ public class OfflineAppealDto extends AppealDto {
 
     private Currency currency;
 
+    private float outputSum;
+
     private float rate;
 
     private String createdDate;

@@ -51,6 +51,10 @@ public abstract class Appeal {
 
     public abstract boolean isVerify(Customer customer);
 
+    public Float getOutputSum() {
+        return sum * rate;
+    }
+
     public void update(AppealRequestDto appealRequestDto) {
         if (appealRequestDto.getSum() != null) {
             sum = appealRequestDto.getSum();
