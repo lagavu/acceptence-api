@@ -1,40 +1,63 @@
 package lagavu.acceptance.domain.appeal.entity;
 
+import lagavu.acceptance.domain.appeal.dto.request.AppealRequestDto;
+import lagavu.acceptance.domain.appeal.entity.valueObject.AppealType;
 import lagavu.acceptance.domain.appeal.entity.valueObject.Currency;
 import lagavu.acceptance.domain.customer.entity.Customer;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table(name = "appeal_feedbacks")
+@DiscriminatorValue(value= AppealType.Values.FEEDBACK)
 @NoArgsConstructor
-@Getter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class FeedbackAppeal extends Appeal {
 
     @NotNull
     @Column
-    Boolean isVerifiedCodeWord;
+    private Boolean isVerifiedCodeWord;
 
     @NotNull
     @Column
-    Integer accountId;
+    private Integer accountId;
 
     public FeedbackAppeal(
             int sum,
             Currency currency,
+            float rate,
+            Customer customer,
             boolean isVerifiedCodeWord,
             int accountId
     ) {
-        super(sum, currency);
+        super(sum, currency, rate, customer);
         this.isVerifiedCodeWord = isVerifiedCodeWord;
         this.accountId = accountId;
+    }
+
+    public Boolean isVerifiedCodeWord() {
+        return isVerifiedCodeWord;
+    }
+
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void update(AppealRequestDto appealRequestDto) {
+        super.update(appealRequestDto);
+
+        if (appealRequestDto.getFeedbackAppealRequestDto() != null) {
+            if (appealRequestDto.getFeedbackAppealRequestDto().isVerifiedCodeWord() != null) {
+                isVerifiedCodeWord = appealRequestDto.getFeedbackAppealRequestDto().isVerifiedCodeWord();
+            }
+
+            if (appealRequestDto.getCallAppealRequestDto().getCallerPhoneNumber() != null) {
+                accountId = appealRequestDto.getFeedbackAppealRequestDto().getAccountId();
+            }
+        }
     }
 
     @Override

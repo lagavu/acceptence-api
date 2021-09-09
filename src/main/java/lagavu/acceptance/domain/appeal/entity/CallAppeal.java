@@ -1,46 +1,70 @@
 package lagavu.acceptance.domain.appeal.entity;
 
+import lagavu.acceptance.domain.appeal.dto.request.AppealRequestDto;
+import lagavu.acceptance.domain.appeal.entity.valueObject.AppealType;
 import lagavu.acceptance.domain.appeal.entity.valueObject.Currency;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table(name = "appeal_calls")
+@DiscriminatorValue(value= AppealType.Values.CALL)
 @NoArgsConstructor
-@Getter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CallAppeal extends Appeal {
 
     @NotNull
     @Column
-    Boolean isVerifiedSmsConfirmation;
+    private Boolean isVerifiedSmsConfirmation;
 
     @NotNull
     @Column
-    String callerPhoneNumber;
+    private String callerPhoneNumber;
 
     public CallAppeal(
             int sum,
             Currency currency,
+            float rate,
+            Customer customer,
             Boolean isVerifiedSmsConfirmation,
             String callerPhoneNumber
     ) {
-        super(sum, currency);
+        super(sum, currency, rate, customer);
 
         this.isVerifiedSmsConfirmation = isVerifiedSmsConfirmation;
         this.callerPhoneNumber = callerPhoneNumber;
+    }
+
+    public Boolean isVerifiedSmsConfirmation() {
+
+        return isVerifiedSmsConfirmation;
+    }
+
+    public String getCallerPhoneNumber() {
+        return callerPhoneNumber;
     }
 
     @Override
     public boolean isVerify(Customer customer) {
         return Objects.equals(this.callerPhoneNumber, customer.getPhoneNumber())
                 && isVerifiedSmsConfirmation;
+    }
+
+    public void update(AppealRequestDto appealRequestDto) {
+        super.update(appealRequestDto);
+
+        if (appealRequestDto.getCallAppealRequestDto() != null) {
+            if (appealRequestDto.getCallAppealRequestDto().isVerifiedSmsConfirmation() != null) {
+                isVerifiedSmsConfirmation = appealRequestDto.getCallAppealRequestDto().isVerifiedSmsConfirmation();
+            }
+
+            if (appealRequestDto.getCallAppealRequestDto().getCallerPhoneNumber() != null) {
+                callerPhoneNumber = appealRequestDto.getCallAppealRequestDto().getCallerPhoneNumber();
+            }
+        }
     }
 }
