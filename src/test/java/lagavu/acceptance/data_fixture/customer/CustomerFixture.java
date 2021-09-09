@@ -11,21 +11,10 @@ public class CustomerFixture {
         return new Customer(
                 "Ilon",
                 Gender.MALE,
-                1000000,
+                10000,
                 phoneNumber,
-                414,
-                4124
-        );
-    }
-
-    public static Customer createWithZeroAmountDollars() {
-        return new Customer(
-                "Ilon",
-                Gender.MALE,
-                0,
-                phoneNumber,
-                414,
-                4124
+                144,
+                9877784
         );
     }
 }
