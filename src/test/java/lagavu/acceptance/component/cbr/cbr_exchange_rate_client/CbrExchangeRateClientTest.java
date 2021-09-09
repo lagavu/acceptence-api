@@ -1,7 +1,7 @@
 package lagavu.acceptance.component.cbr.cbr_exchange_rate_client;
 
-import lagavu.acceptance.component.cbr.config.CbrRateParserConfig;
-import lagavu.acceptance.component.cbr.rate_parser.CbrRateParserInterface;
+import lagavu.acceptance.component.cbr.rate_parser.config.CbrRateParserConfig;
+import lagavu.acceptance.component.cbr.rate_parser.ICbrRateParser;
 import lagavu.acceptance.data_fixture.cbr.CbrRateApiMock;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CbrExchangeRateClientTest {
 
     @Autowired
-    private CbrRateParserInterface cbrRateParser;
+    private ICbrRateParser cbrRateParser;
 
     private MockWebServer mockWebServer;
     private CbrExchangeRateClient cbrExchangeRateClient;
