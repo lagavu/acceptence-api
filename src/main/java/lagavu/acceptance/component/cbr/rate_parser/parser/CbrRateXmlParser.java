@@ -1,6 +1,6 @@
 package lagavu.acceptance.component.cbr.rate_parser.parser;
 
-import lagavu.acceptance.component.cbr.rate_parser.CbrRateParserInterface;
+import lagavu.acceptance.component.cbr.rate_parser.ICbrRateParser;
 import lagavu.acceptance.component.cbr.rate_parser.exception.CbrRateParserException;
 import lagavu.acceptance.util.document_creator.DocumentCreator;
 import org.springframework.stereotype.Component;
@@ -10,8 +10,9 @@ import org.w3c.dom.NodeList;
 import javax.xml.xpath.*;
 
 @Component
-public class CbrRateXmlParser implements CbrRateParserInterface {
+public class CbrRateXmlParser implements ICbrRateParser {
 
+    @Override
     public Float parse(String rates, String rateIdentifier) {
         Document document = DocumentCreator.createFromXmlString(rates);
         XPathFactory xPathFactory = XPathFactory.newInstance();

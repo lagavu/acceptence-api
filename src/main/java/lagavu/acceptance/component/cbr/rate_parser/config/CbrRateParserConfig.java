@@ -1,6 +1,6 @@
-package lagavu.acceptance.component.cbr.config;
+package lagavu.acceptance.component.cbr.rate_parser.config;
 
-import lagavu.acceptance.component.cbr.rate_parser.CbrRateParserInterface;
+import lagavu.acceptance.component.cbr.rate_parser.ICbrRateParser;
 import lagavu.acceptance.component.cbr.rate_parser.parser.CbrRateXmlParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class CbrRateParserConfig {
 
     @Bean
-    public CbrRateParserInterface cbrRateParser() {
+    public ICbrRateParser cbrRateParser() {
         return new CbrRateXmlParser();
     }
 }
