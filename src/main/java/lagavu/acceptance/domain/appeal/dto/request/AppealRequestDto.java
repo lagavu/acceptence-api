@@ -1,8 +1,8 @@
 package lagavu.acceptance.domain.appeal.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lagavu.acceptance.domain.appeal.entity.valueObject.AppealType;
-import lagavu.acceptance.domain.appeal.entity.valueObject.Currency;
+import lagavu.acceptance.domain.appeal.entity.value_object.AppealType;
+import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

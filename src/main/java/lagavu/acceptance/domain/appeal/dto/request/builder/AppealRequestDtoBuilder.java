@@ -4,7 +4,7 @@ import lagavu.acceptance.domain.appeal.dto.request.AppealRequestDto;
 import lagavu.acceptance.domain.appeal.dto.request.CallAppealRequestDto;
 import lagavu.acceptance.domain.appeal.dto.request.FeedbackAppealRequestDto;
 import lagavu.acceptance.domain.appeal.dto.request.OfflineAppealRequestDto;
-import lagavu.acceptance.domain.appeal.entity.valueObject.Currency;
+import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 
 public class AppealRequestDtoBuilder {
     private final String type;

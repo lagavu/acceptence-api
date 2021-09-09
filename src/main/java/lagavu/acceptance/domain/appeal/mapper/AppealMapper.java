@@ -5,7 +5,7 @@ import lagavu.acceptance.domain.appeal.dto.CallAppealDto;
 import lagavu.acceptance.domain.appeal.dto.FeedbackAppealDto;
 import lagavu.acceptance.domain.appeal.dto.OfflineAppealDto;
 import lagavu.acceptance.domain.appeal.entity.*;
-import lagavu.acceptance.domain.appeal.entity.valueObject.AppealType;
+import lagavu.acceptance.domain.appeal.entity.value_object.AppealType;
 import lagavu.acceptance.util.date_formatter.DateFormatter;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;

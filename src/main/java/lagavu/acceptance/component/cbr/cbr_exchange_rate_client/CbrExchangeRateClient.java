@@ -3,7 +3,7 @@ package lagavu.acceptance.component.cbr.cbr_exchange_rate_client;
 import lagavu.acceptance.component.cbr.cbr_exchange_rate_client.exception.CbrExchangeRateClientException;
 import lagavu.acceptance.component.cbr.rate_parser.ICbrRateParser;
 import lagavu.acceptance.component.cbr.rate_parser.identifier.RateIdentifier;
-import lagavu.acceptance.domain.appeal.entity.valueObject.Currency;
+import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 

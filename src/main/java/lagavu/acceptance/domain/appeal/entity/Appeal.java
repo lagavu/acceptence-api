@@ -2,7 +2,7 @@ package lagavu.acceptance.domain.appeal.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lagavu.acceptance.domain.appeal.dto.request.AppealRequestDto;
-import lagavu.acceptance.domain.appeal.entity.valueObject.Currency;
+import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

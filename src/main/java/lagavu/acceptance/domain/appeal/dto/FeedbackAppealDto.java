@@ -1,6 +1,6 @@
 package lagavu.acceptance.domain.appeal.dto;
 
-import lagavu.acceptance.domain.appeal.entity.valueObject.Currency;
+import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import lombok.Getter;
 import lombok.Setter;
 
