@@ -3,7 +3,7 @@ package lagavu.acceptance.controller;
 import lagavu.acceptance.domain.customer.dto.CustomerDto;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import lagavu.acceptance.domain.customer.mapper.CustomerMapper;
-import lagavu.acceptance.domain.customer.repository.CustomerRepository;
+import lagavu.acceptance.domain.customer.repository.ICustomerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CustomerController {
 
-    private final CustomerRepository customerRepository;
+    private final ICustomerRepository customerRepository;
 
-    public CustomerController(CustomerRepository customerRepository) {
+    public CustomerController(ICustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 

@@ -6,7 +6,7 @@ import lagavu.acceptance.domain.appeal.entity.Appeal;
 import lagavu.acceptance.domain.appeal.mapper.AppealMapper;
 import lagavu.acceptance.domain.appeal.service.AppealService;
 import lagavu.acceptance.domain.customer.entity.Customer;
-import lagavu.acceptance.domain.customer.repository.CustomerRepository;
+import lagavu.acceptance.domain.customer.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +17,11 @@ import java.util.List;
 public class AppealController {
 
     private final AppealService appealService;
-    private final CustomerRepository customerRepository;
+    private CustomerService customerService;
 
-    public AppealController(AppealService appealService, CustomerRepository customerRepository) {
+    public AppealController(AppealService appealService, CustomerService customerService) {
         this.appealService = appealService;
-        this.customerRepository = customerRepository;
+        this.customerService = customerService;
     }
 
     @GetMapping("/appeals")
@@ -42,7 +42,7 @@ public class AppealController {
 
     @PostMapping("/appeal/register")
     public ResponseEntity<AppealDto> register(@RequestBody AppealRequestDto appealRequestDto) {
-        Customer customer = customerRepository.findByName("Ilon");
+        Customer customer = customerService.findByAppealData(appealRequestDto);
         Appeal appeal = appealService.register(appealRequestDto, customer);
 
         return new ResponseEntity<>(AppealDto.create(appeal), HttpStatus.OK);
