@@ -6,8 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix="cbr-api")
 public class CbrExchangeRateClientProperties {
 
-    private static final String DATE_FORMAT = "dd-MM-yyyy";
-
     private String baseUrl;
     private String format;
     private String parameterDate;
@@ -37,6 +35,7 @@ public class CbrExchangeRateClientProperties {
     }
 
     public String getUrlForCurrentRates() {
-        return getBaseUrl() + getFormat() + getParameterDate() + DateFormatter.getCurrentDate(DATE_FORMAT);
+        return getBaseUrl() + getFormat() + getParameterDate() +
+                DateFormatter.getCurrentDate(DateFormatter.DATE_FORMAT_dd_MM_yyyy);
     }
 }
