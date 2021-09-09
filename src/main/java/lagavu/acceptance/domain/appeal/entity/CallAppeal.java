@@ -55,7 +55,7 @@ public class CallAppeal extends Appeal {
     }
 
     public void update(AppealRequestDto appealRequestDto) {
-        super.update(appealRequestDto);
+        super.updateCommonData(appealRequestDto);
 
         if (appealRequestDto.getCallAppealRequestDto() != null) {
             if (appealRequestDto.getCallAppealRequestDto().isVerifiedSmsConfirmation() != null) {

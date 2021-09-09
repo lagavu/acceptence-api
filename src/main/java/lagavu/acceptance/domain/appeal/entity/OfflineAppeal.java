@@ -49,7 +49,7 @@ public class OfflineAppeal extends Appeal {
     }
 
     public void update(AppealRequestDto appealRequestDto) {
-        super.update(appealRequestDto);
+        super.updateCommonData(appealRequestDto);
 
         if (appealRequestDto.getOfflineAppealRequestDto() != null) {
             if (appealRequestDto.getOfflineAppealRequestDto().isVerifiedDocumentProvided() != null) {

@@ -12,6 +12,7 @@ import lagavu.acceptance.domain.appeal.factory.AppealFactory;
 import lagavu.acceptance.domain.appeal.repository.AppealRepository;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class AppealService {
                 .orElseThrow(() -> new AppealNotFoundException("Unable to find appeal with id: " + id));
     }
 
+    @Transactional
     public Appeal register(AppealRequestDto appealRequestDto, Customer customer) {
         if (appealRequestDto.getSum() > customer.getAvailableAmountOfDollars()) {
             throw new RegistrationAppealException("Not enough money in the account.");
@@ -55,6 +57,7 @@ public class AppealService {
         return appeal;
     }
 
+    @Transactional
     public Appeal update(Long id, AppealRequestDto appealRequestDto) {
         Appeal appeal = getById(id);
 
@@ -76,8 +79,6 @@ public class AppealService {
     }
 
     public void delete(Long id) {
-        Appeal appeal = getById(id);
-
-        appealRepository.delete(appeal);
+        appealRepository.delete(getById(id));
     }
 }

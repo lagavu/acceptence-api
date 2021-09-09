@@ -47,7 +47,7 @@ public class FeedbackAppeal extends Appeal {
     }
 
     public void update(AppealRequestDto appealRequestDto) {
-        super.update(appealRequestDto);
+        super.updateCommonData(appealRequestDto);
 
         if (appealRequestDto.getFeedbackAppealRequestDto() != null) {
             if (appealRequestDto.getFeedbackAppealRequestDto().isVerifiedCodeWord() != null) {

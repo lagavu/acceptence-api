@@ -55,7 +55,7 @@ public abstract class Appeal {
         return sum * rate;
     }
 
-    public void update(AppealRequestDto appealRequestDto) {
+    public void updateCommonData(AppealRequestDto appealRequestDto) {
         if (appealRequestDto.getSum() != null) {
             sum = appealRequestDto.getSum();
         }
