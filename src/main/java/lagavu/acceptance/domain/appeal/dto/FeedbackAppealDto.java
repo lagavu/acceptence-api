@@ -1,5 +1,6 @@
 package lagavu.acceptance.domain.appeal.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,13 +17,17 @@ public class FeedbackAppealDto extends AppealDto {
 
     private Currency currency;
 
+    @JsonProperty("output_sum")
     private float outputSum;
 
     private float rate;
 
-    private String createdDate;
-
+    @JsonProperty("is_verified_code_word")
     private boolean isVerifiedCodeWord;
 
+    @JsonProperty("account_id")
     private int accountId;
+
+    @JsonProperty("created_at")
+    private String createdDate;
 }
