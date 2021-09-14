@@ -67,6 +67,7 @@ public class CbrExchangeRateClient implements ICbrExchangeRateClient {
     }
 
     @Override
+    @Cacheable("cbr_rates")
     public String getRates(String date) {
         return webClient.get()
                 .uri(properties.getUrlOfRates(date))
