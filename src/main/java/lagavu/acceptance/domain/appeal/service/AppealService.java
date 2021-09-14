@@ -11,6 +11,7 @@ import lagavu.acceptance.domain.appeal.exception.RegistrationAppealException;
 import lagavu.acceptance.domain.appeal.factory.AppealFactory;
 import lagavu.acceptance.domain.appeal.repository.IAppealRepository;
 import lagavu.acceptance.domain.customer.entity.Customer;
+import lagavu.acceptance.util.date_formatter.DateFormatter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,8 +44,9 @@ public class AppealService {
             throw new RegistrationAppealException("Not enough money in the account.");
         }
 
-        float todayRate = cbrExchangeRateClient.getTodayRateByCurrency(appealRequestDto.getCurrency().getCurrency());
-        appealRequestDto.setRate(todayRate);
+        String date = DateFormatter.getCurrentDate(DateFormatter.DATE_FORMAT_dd_MM_yyyy);
+        float rate = cbrExchangeRateClient.getRateByCurrency(appealRequestDto.getCurrency().getCurrency(), date);
+        appealRequestDto.setRate(rate);
 
         Appeal appeal = AppealFactory.create(appealRequestDto, customer);
 

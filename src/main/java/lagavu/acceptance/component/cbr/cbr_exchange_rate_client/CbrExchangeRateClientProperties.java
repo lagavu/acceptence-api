@@ -1,6 +1,5 @@
 package lagavu.acceptance.component.cbr.cbr_exchange_rate_client;
 
-import lagavu.acceptance.util.date_formatter.DateFormatter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix="cbr-api")
@@ -34,8 +33,7 @@ public class CbrExchangeRateClientProperties {
         this.parameterDate = parameterDate;
     }
 
-    public String getUrlForCurrentRates() {
-        return getBaseUrl() + getFormat() + getParameterDate() +
-                DateFormatter.getCurrentDate(DateFormatter.DATE_FORMAT_dd_MM_yyyy);
+    public String getUrlOfRates(String date) {
+        return getBaseUrl() + getFormat() + getParameterDate() + date;
     }
 }

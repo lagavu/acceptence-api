@@ -2,15 +2,15 @@ package lagavu.acceptance.component.cbr.cbr_exchange_rate_client;
 
 public interface ICbrExchangeRateClient {
 
-    float getTodayRateUsdRub();
+    float getRateUsdRub(String date);
 
-    float getTodayRateEurRub();
+    float getRateEurRub(String date);
 
-    float getTodayRateChfRub();
+    float getRateChfRub(String date);
 
-    float getTodayRateGbpRub();
+    float getRateGbpRub(String date);
 
-    float getTodayRateByCurrency(String currency);
+    float getRateByCurrency(String currency, String date);
 
-    String getTodayRates();
+    String getRates(String date);
 }

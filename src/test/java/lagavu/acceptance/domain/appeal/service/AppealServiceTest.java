@@ -16,13 +16,13 @@ import lagavu.acceptance.domain.appeal.repository.IAppealRepository;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -85,9 +85,7 @@ class AppealServiceTest {
                 .callAppealRequestDto(true, CustomerFixture.phoneNumber)
                 .build();
 
-        Mockito.doReturn((float) 78.00)
-                .when(cbrExchangeRateClient)
-                .getTodayRateByCurrency(Currency.USD.getCurrency());
+        doReturn((float) 78.00).when(cbrExchangeRateClient).getRateByCurrency(any(), any());
 
         Appeal appeal = appealService.register(appealRequestDto, customer);
 
@@ -101,7 +99,7 @@ class AppealServiceTest {
         assertEquals(appealRequestDto.getCallAppealRequestDto().getCallerPhoneNumber(),
                 callAppeal.getCallerPhoneNumber());
 
-        Mockito.verify(appealRepository, Mockito.times(1)).save(callAppeal);
+        verify(appealRepository, times(1)).save(callAppeal);
     }
 
     @Test
@@ -111,9 +109,7 @@ class AppealServiceTest {
                 .feedbackAppealRequestDto(true, 144)
                 .build();
 
-        Mockito.doReturn((float) 78.00)
-                .when(cbrExchangeRateClient)
-                .getTodayRateByCurrency(Currency.CHF.getCurrency());
+        doReturn((float) 78.00).when(cbrExchangeRateClient).getRateByCurrency(any(), any());
 
         Appeal appeal = appealService.register(appealRequestDto, customer);
 
@@ -126,7 +122,7 @@ class AppealServiceTest {
                 feedbackAppeal.isVerifiedCodeWord());
         assertEquals(appealRequestDto.getFeedbackAppealRequestDto().getAccountId(), feedbackAppeal.getAccountId());
 
-        Mockito.verify(appealRepository, Mockito.times(1)).save(feedbackAppeal);
+        verify(appealRepository, times(1)).save(feedbackAppeal);
     }
 
     @Test
@@ -136,9 +132,7 @@ class AppealServiceTest {
                 .offlineAppealRequestDto(true, 9877784)
                 .build();
 
-        Mockito.doReturn((float) 78.00)
-                .when(cbrExchangeRateClient)
-                .getTodayRateByCurrency(Currency.GBP.getCurrency());
+        doReturn((float) 78.00).when(cbrExchangeRateClient).getRateByCurrency(any(), any());
 
         Appeal appeal = appealService.register(appealRequestDto, customer);
 
@@ -152,7 +146,7 @@ class AppealServiceTest {
         assertEquals(appealRequestDto.getOfflineAppealRequestDto().getNumberDocument(),
                 offlineAppeal.getNumberDocument());
 
-        Mockito.verify(appealRepository, Mockito.times(1)).save(offlineAppeal);
+        verify(appealRepository, times(1)).save(offlineAppeal);
     }
 
     @Test

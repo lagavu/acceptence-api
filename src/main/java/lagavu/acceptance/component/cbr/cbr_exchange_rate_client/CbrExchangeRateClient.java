@@ -4,6 +4,7 @@ import lagavu.acceptance.component.cbr.cbr_exchange_rate_client.exception.CbrExc
 import lagavu.acceptance.component.cbr.rate_parser.ICbrRateParser;
 import lagavu.acceptance.component.cbr.rate_parser.identifier.RateIdentifier;
 import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -25,50 +26,50 @@ public class CbrExchangeRateClient implements ICbrExchangeRateClient {
     }
 
     @Override
-    public float getTodayRateUsdRub() {
-        return cbrRateParser.parse(getTodayRates(), RateIdentifier.USD.getIdentifier());
+    public float getRateUsdRub(String date) {
+        return cbrRateParser.parse(getRates(date), RateIdentifier.USD.getIdentifier());
     }
 
     @Override
-    public float getTodayRateEurRub() {
-        return cbrRateParser.parse(getTodayRates(), RateIdentifier.EUR.getIdentifier());
+    public float getRateEurRub(String date) {
+        return cbrRateParser.parse(getRates(date), RateIdentifier.EUR.getIdentifier());
     }
 
     @Override
-    public float getTodayRateChfRub() {
-        return cbrRateParser.parse(getTodayRates(), RateIdentifier.CHF.getIdentifier());
+    public float getRateChfRub(String date) {
+        return cbrRateParser.parse(getRates(date), RateIdentifier.CHF.getIdentifier());
     }
 
     @Override
-    public float getTodayRateGbpRub() {
-        return cbrRateParser.parse(getTodayRates(), RateIdentifier.GBP.getIdentifier());
+    public float getRateGbpRub(String date) {
+        return cbrRateParser.parse(getRates(date), RateIdentifier.GBP.getIdentifier());
     }
 
     @Override
-    public float getTodayRateByCurrency(String currency) {
+    public float getRateByCurrency(String currency, String date) {
         if (currency.equals(Currency.USD.getCurrency())) {
-            return getTodayRateUsdRub();
+            return getRateUsdRub(date);
         }
 
         if (currency.equals(Currency.EUR.getCurrency())) {
-            return getTodayRateEurRub();
+            return getRateEurRub(date);
         }
 
         if (currency.equals(Currency.CHF.getCurrency())) {
-            return getTodayRateChfRub();
+            return getRateChfRub(date);
         }
 
         if (currency.equals(Currency.GBP.getCurrency())) {
-            return getTodayRateGbpRub();
+            return getRateGbpRub(date);
         }
 
         throw new CbrExchangeRateClientException("Failed to define currency to get today rate.");
     }
 
     @Override
-    public String getTodayRates() {
+    public String getRates(String date) {
         return webClient.get()
-                .uri(properties.getUrlForCurrentRates())
+                .uri(properties.getUrlOfRates(date))
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();

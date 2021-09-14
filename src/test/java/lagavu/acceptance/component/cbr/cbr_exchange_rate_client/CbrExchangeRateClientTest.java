@@ -1,56 +1,81 @@
 package lagavu.acceptance.component.cbr.cbr_exchange_rate_client;
 
-import lagavu.acceptance.component.cbr.rate_parser.config.CbrRateParserConfig;
-import lagavu.acceptance.component.cbr.rate_parser.ICbrRateParser;
+import lagavu.acceptance.component.cbr.rate_parser.parser.CbrRateXmlParser;
 import lagavu.acceptance.data_fixture.cbr.CbrRateApiMock;
-import okhttp3.mockwebserver.MockResponse;
-import okhttp3.mockwebserver.MockWebServer;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import lombok.var;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.notNull;
+import static org.mockito.Mockito.*;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = CbrRateParserConfig.class, loader = AnnotationConfigContextLoader.class)
-class CbrExchangeRateClientTest {
+@SpringBootTest
+@RunWith(SpringRunner.class)
+public class CbrExchangeRateClientTest {
 
     @Autowired
-    private ICbrRateParser cbrRateParser;
-
-    private MockWebServer mockWebServer;
     private CbrExchangeRateClient cbrExchangeRateClient;
 
-    @BeforeEach
-    void setupMockWebServer() {
-        mockWebServer = new MockWebServer();
+    @MockBean
+    private WebClient webClient;
 
-        CbrExchangeRateClientProperties properties = new CbrExchangeRateClientProperties();
-        properties.setBaseUrl(mockWebServer.url("/").url().toString());
-        properties.setFormat("XML_daily.asp");
-        properties.setParameterDate("?date_req=");
+    @MockBean
+    private CbrExchangeRateClientProperties properties;
 
-        cbrExchangeRateClient = new CbrExchangeRateClient(WebClient.create(), properties, cbrRateParser);
+    @MockBean
+    private CbrRateXmlParser cbrRateParser;
+
+    @Test
+    public void getRateUsdRub() {
+        String date = "26-05-2021";
+        String xmlRates = CbrRateApiMock.getXmlRates();
+
+        doReturn("url")
+                .when(properties)
+                .getUrlOfRates(date);
+
+        setMockDataForWebClient(xmlRates);
+
+        Float rateUsdRub = cbrExchangeRateClient.getRateUsdRub(date);
+        assertEquals((float) 73.9866, rateUsdRub);
     }
 
     @Test
-    void getTodayRateUsdRub() {
-        String xml = CbrRateApiMock.getXmlRates();
+    public void getRateUsdRubUsingCache() {
+        String date = "26-05-2021";
 
-        mockWebServer.enqueue(
-                new MockResponse().setResponseCode(200)
-                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_XML_VALUE)
-                        .setBody(xml)
-        );
+        doReturn("url")
+                .when(properties)
+                .getUrlOfRates(date);
 
-        Float rateUsdRub = cbrExchangeRateClient.getTodayRateUsdRub();
-        assertEquals((float) 73.9866, rateUsdRub);
+        setMockDataForWebClient("data about rates");
+
+        cbrExchangeRateClient.getRates(date);
+        cbrExchangeRateClient.getRates(date);
+
+        verify(webClient, times(1)).get();
+    }
+
+    private void setMockDataForWebClient(String xmlRates) {
+        final var uriSpecMock = mock(WebClient.RequestHeadersUriSpec.class);
+        final var headersSpecMock = mock(WebClient.RequestHeadersSpec.class);
+        final var responseSpecMock = mock(WebClient.ResponseSpec.class);
+
+        when(webClient.get()).thenReturn(uriSpecMock);
+        when(uriSpecMock.uri(ArgumentMatchers.<String>notNull())).thenReturn(headersSpecMock);
+        when(headersSpecMock.header(notNull(), notNull())).thenReturn(headersSpecMock);
+        when(headersSpecMock.headers(notNull())).thenReturn(headersSpecMock);
+        when(headersSpecMock.retrieve()).thenReturn(responseSpecMock);
+
+        when(responseSpecMock.bodyToMono(ArgumentMatchers.<Class<String>>notNull()))
+                .thenReturn(Mono.just(xmlRates));
     }
 }
