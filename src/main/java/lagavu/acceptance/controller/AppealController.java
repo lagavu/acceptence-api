@@ -32,7 +32,7 @@ public class AppealController {
         return new ResponseEntity<>(appealDtoList, HttpStatus.OK);
     }
 
-    @GetMapping("/appeal/{id}")
+    @GetMapping("/appeals/{id}")
     public ResponseEntity<AppealDto> get(@PathVariable Long id) {
         Appeal appeal = appealService.getById(id);
         AppealDto appealDto = AppealDto.create(appeal);
@@ -40,7 +40,7 @@ public class AppealController {
         return new ResponseEntity<>(appealDto, HttpStatus.OK);
     }
 
-    @PostMapping("/appeal/register")
+    @PostMapping("/appeals/register")
     public ResponseEntity<AppealDto> register(@RequestBody AppealRequestDto appealRequestDto) {
         Customer customer = customerService.findByAppealData(appealRequestDto);
         Appeal appeal = appealService.register(appealRequestDto, customer);
@@ -48,14 +48,14 @@ public class AppealController {
         return new ResponseEntity<>(AppealDto.create(appeal), HttpStatus.OK);
     }
 
-    @PutMapping("/appeal/update/{id}")
+    @PutMapping("/appeals/{id}")
     public ResponseEntity<AppealDto> update(@PathVariable Long id, @RequestBody AppealRequestDto appealRequestDto) {
         Appeal appeal = appealService.update(id, appealRequestDto);
 
         return new ResponseEntity<>(AppealDto.create(appeal), HttpStatus.OK);
     }
 
-    @DeleteMapping("/appeal/delete/{id}")
+    @DeleteMapping("/appeals/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id) {
         appealService.delete(id);
 

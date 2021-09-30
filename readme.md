@@ -76,7 +76,7 @@ ____
 ----
 #### Примеры запроса
 
-1. Получение всех обращений
+1. Получение всех обращений GET
 `http://localhost:8080/api/appeals`
 
 
@@ -106,7 +106,7 @@ ____
 }
 ```
 
-2. Добавление обращения `http://localhost:8080/api/appeal/register`
+2. Добавление обращения POST `http://localhost:8080/api/appeals/register`
 
 **Body**
 ```json
@@ -159,7 +159,7 @@ ____
 }
 ```
 
-3. Обновление данных обращения `http://localhost:8080/api/appeal/update/2`
+3. Обновление данных обращения PUT `http://localhost:8080/api/appeals/2`
 
 **Body**
 ```json

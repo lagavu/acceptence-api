@@ -19,7 +19,7 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
 
-    @GetMapping("/customer/{id}")
+    @GetMapping("/customers/{id}")
     public ResponseEntity<CustomerDto> get(@PathVariable Long id) {
         Customer customer = customerRepository.getById(id);
 
