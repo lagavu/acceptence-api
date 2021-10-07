@@ -5,7 +5,6 @@ import lagavu.acceptance.domain.appeal.entity.value_object.AppealType;
 import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -26,14 +25,15 @@ public class FeedbackAppeal extends Appeal {
     private Integer accountId;
 
     public FeedbackAppeal(
-            int sum,
+            Integer sum,
             Currency currency,
-            float rate,
+            Float rate,
             Customer customer,
-            boolean isVerifiedCodeWord,
-            int accountId
+            Boolean isVerifiedCodeWord,
+            Integer accountId
     ) {
         super(sum, currency, rate, customer);
+
         this.isVerifiedCodeWord = isVerifiedCodeWord;
         this.accountId = accountId;
     }
@@ -61,7 +61,7 @@ public class FeedbackAppeal extends Appeal {
     }
 
     @Override
-    public boolean isVerify(Customer customer) {
+    public Boolean isVerify(Customer customer) {
         return Objects.equals(this.accountId, customer.getAccountId())
                 && isVerifiedCodeWord;
     }

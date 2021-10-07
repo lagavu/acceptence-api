@@ -12,7 +12,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class CbrExchangeRateClient implements ICbrExchangeRateClient {
 
     private final WebClient webClient;
+
     private final CbrExchangeRateClientProperties properties;
+
     private final ICbrRateParser cbrRateParser;
 
     public CbrExchangeRateClient(

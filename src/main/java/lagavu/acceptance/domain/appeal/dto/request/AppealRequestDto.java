@@ -33,7 +33,7 @@ public class AppealRequestDto {
 
     public AppealRequestDto(
             @NonNull String type,
-            int sum,
+            Integer sum,
             Currency currency,
             CallAppealRequestDto callAppealRequestDto,
             FeedbackAppealRequestDto feedbackAppealRequestDto,

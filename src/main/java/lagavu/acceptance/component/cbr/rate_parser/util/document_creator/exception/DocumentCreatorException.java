@@ -1,4 +1,4 @@
-package lagavu.acceptance.util.document_creator.exception;
+package lagavu.acceptance.component.cbr.rate_parser.util.document_creator.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

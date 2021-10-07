@@ -1,4 +1,4 @@
-package lagavu.acceptance.util.document_creator;
+package lagavu.acceptance.component.cbr.rate_parser.util.document_creator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

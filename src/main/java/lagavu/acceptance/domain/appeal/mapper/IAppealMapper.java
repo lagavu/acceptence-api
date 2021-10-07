@@ -6,7 +6,7 @@ import lagavu.acceptance.domain.appeal.dto.FeedbackAppealDto;
 import lagavu.acceptance.domain.appeal.dto.OfflineAppealDto;
 import lagavu.acceptance.domain.appeal.entity.*;
 import lagavu.acceptance.domain.appeal.entity.value_object.AppealType;
-import lagavu.acceptance.util.date_formatter.DateFormatter;
+import lagavu.acceptance.component.cbr.cbr_exchange_rate_client.util.date_formatter.CbrDateFormatter;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -44,15 +44,15 @@ public interface IAppealMapper {
 
     List<AppealDto> mapAppealsToAppealDtoList(List<Appeal> appeals);
 
-    @Mapping(source = "verifiedSmsConfirmation", target = "verifiedSmsConfirmation")
-    @Mapping(source = "createdDate", target = "createdDate", dateFormat = DateFormatter.DATE_FORMAT_dd_MM_yyyy)
+    @Mapping(source = "verifiedSmsConfirmation", target = "isVerifiedSmsConfirmation")
+    @Mapping(source = "createdDate", target = "createdDate", dateFormat = CbrDateFormatter.DATE_FORMAT_dd_MM_yyyy)
     CallAppealDto toCallAppealDto(CallAppeal callAppeal);
 
-    @Mapping(source = "verifiedCodeWord", target = "verifiedCodeWord")
-    @Mapping(source = "createdDate", target = "createdDate", dateFormat = DateFormatter.DATE_FORMAT_dd_MM_yyyy)
+    @Mapping(source = "verifiedCodeWord", target = "isVerifiedCodeWord")
+    @Mapping(source = "createdDate", target = "createdDate", dateFormat = CbrDateFormatter.DATE_FORMAT_dd_MM_yyyy)
     FeedbackAppealDto toFeedbackAppealDto(FeedbackAppeal feedbackAppeal);
 
-    @Mapping(source = "verifiedDocumentProvided", target = "verifiedDocumentProvided")
-    @Mapping(source = "createdDate", target = "createdDate", dateFormat = DateFormatter.DATE_FORMAT_dd_MM_yyyy)
+    @Mapping(source = "verifiedDocumentProvided", target = "isVerifiedDocumentProvided")
+    @Mapping(source = "createdDate", target = "createdDate", dateFormat = CbrDateFormatter.DATE_FORMAT_dd_MM_yyyy)
     OfflineAppealDto toOfflineAppealDto(OfflineAppeal offlineAppeal);
 }

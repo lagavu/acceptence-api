@@ -9,24 +9,24 @@ import lombok.Setter;
 @Setter
 public class OfflineAppealDto extends AppealDto {
 
-    private long id;
+    private Long id;
 
     private String type;
 
-    private int sum;
+    private Integer sum;
 
     private Currency currency;
 
     @JsonProperty("output_sum")
-    private float outputSum;
+    private Float outputSum;
 
-    private float rate;
+    private Float rate;
 
     @JsonProperty("is_verified_document_provided")
-    private boolean isVerifiedDocumentProvided;
+    private Boolean isVerifiedDocumentProvided;
 
     @JsonProperty("number_document")
-    private int numberDocument;
+    private Integer numberDocument;
 
     @JsonProperty("created_at")
     private String createdDate;

@@ -9,24 +9,24 @@ import lombok.Setter;
 @Setter
 public class FeedbackAppealDto extends AppealDto {
 
-    private long id;
+    private Long id;
 
     private String type;
 
-    private int sum;
+    private Integer sum;
 
     private Currency currency;
 
     @JsonProperty("output_sum")
-    private float outputSum;
+    private Float outputSum;
 
-    private float rate;
+    private Float rate;
 
     @JsonProperty("is_verified_code_word")
-    private boolean isVerifiedCodeWord;
+    private Boolean isVerifiedCodeWord;
 
     @JsonProperty("account_id")
-    private int accountId;
+    private Integer accountId;
 
     @JsonProperty("created_at")
     private String createdDate;

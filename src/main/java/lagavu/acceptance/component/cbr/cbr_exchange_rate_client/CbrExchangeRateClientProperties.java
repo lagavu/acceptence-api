@@ -6,7 +6,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class CbrExchangeRateClientProperties {
 
     private String baseUrl;
+
     private String format;
+
     private String parameterDate;
 
     public String getBaseUrl() {

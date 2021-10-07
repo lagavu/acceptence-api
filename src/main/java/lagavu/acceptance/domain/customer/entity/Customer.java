@@ -44,7 +44,7 @@ public class Customer {
     @Column
     private Integer numberDocument;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     private List<Appeal> appeals = new ArrayList<>();
 
     public Customer(

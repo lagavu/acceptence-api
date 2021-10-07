@@ -17,7 +17,7 @@ import java.util.List;
 public class AppealController {
 
     private final AppealService appealService;
-    private CustomerService customerService;
+    private final CustomerService customerService;
 
     public AppealController(AppealService appealService, CustomerService customerService) {
         this.appealService = appealService;
@@ -28,7 +28,6 @@ public class AppealController {
     public ResponseEntity<List<AppealDto>> getList() {
         List<Appeal> appeals = appealService.findAll();
         List<AppealDto> appealDtoList = IAppealMapper.INSTANCE.mapAppealsToAppealDtoList(appeals);
-
         return new ResponseEntity<>(appealDtoList, HttpStatus.OK);
     }
 
@@ -36,7 +35,6 @@ public class AppealController {
     public ResponseEntity<AppealDto> get(@PathVariable Long id) {
         Appeal appeal = appealService.getById(id);
         AppealDto appealDto = AppealDto.create(appeal);
-
         return new ResponseEntity<>(appealDto, HttpStatus.OK);
     }
 
@@ -44,21 +42,18 @@ public class AppealController {
     public ResponseEntity<AppealDto> register(@RequestBody AppealRequestDto appealRequestDto) {
         Customer customer = customerService.findByAppealData(appealRequestDto);
         Appeal appeal = appealService.register(appealRequestDto, customer);
-
         return new ResponseEntity<>(AppealDto.create(appeal), HttpStatus.OK);
     }
 
     @PutMapping("/appeals/{id}")
     public ResponseEntity<AppealDto> update(@PathVariable Long id, @RequestBody AppealRequestDto appealRequestDto) {
         Appeal appeal = appealService.update(id, appealRequestDto);
-
         return new ResponseEntity<>(AppealDto.create(appeal), HttpStatus.OK);
     }
 
     @DeleteMapping("/appeals/{id}")
     public ResponseEntity<Long> delete(@PathVariable Long id) {
         appealService.delete(id);
-
         return new ResponseEntity<Long>(id, HttpStatus.OK);
     }
 }

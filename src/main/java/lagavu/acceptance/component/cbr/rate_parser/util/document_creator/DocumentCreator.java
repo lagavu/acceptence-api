@@ -1,10 +1,9 @@
-package lagavu.acceptance.util.document_creator;
+package lagavu.acceptance.component.cbr.rate_parser.util.document_creator;
 
-import lagavu.acceptance.util.document_creator.exception.DocumentCreatorException;
+import lagavu.acceptance.component.cbr.rate_parser.util.document_creator.exception.DocumentCreatorException;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;

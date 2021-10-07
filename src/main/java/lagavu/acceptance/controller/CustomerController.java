@@ -22,7 +22,6 @@ public class CustomerController {
     @GetMapping("/customers/{id}")
     public ResponseEntity<CustomerDto> get(@PathVariable Long id) {
         Customer customer = customerRepository.getById(id);
-
         return new ResponseEntity<CustomerDto>(ICustomerMapper.INSTANCE.toDto(customer), HttpStatus.OK);
     }
 }

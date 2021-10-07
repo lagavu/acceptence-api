@@ -2,11 +2,10 @@ package lagavu.acceptance.component.cbr.rate_parser.parser;
 
 import lagavu.acceptance.component.cbr.rate_parser.ICbrRateParser;
 import lagavu.acceptance.component.cbr.rate_parser.exception.CbrRateParserException;
-import lagavu.acceptance.util.document_creator.DocumentCreator;
+import lagavu.acceptance.component.cbr.rate_parser.util.document_creator.DocumentCreator;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
-
 import javax.xml.xpath.*;
 
 @Component

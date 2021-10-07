@@ -9,21 +9,21 @@ import lombok.Setter;
 @Setter
 public class CallAppealDto extends AppealDto {
 
-    private long id;
+    private Long id;
 
     private String type;
 
-    private int sum;
+    private Integer sum;
 
     private Currency currency;
 
     @JsonProperty("output_sum")
-    private float outputSum;
+    private Float outputSum;
 
-    private float rate;
+    private Float rate;
 
     @JsonProperty("is_verified_sms_confirmation")
-    private boolean isVerifiedSmsConfirmation;
+    private Boolean isVerifiedSmsConfirmation;
 
     @JsonProperty("caller_phone_number")
     private String callerPhoneNumber;

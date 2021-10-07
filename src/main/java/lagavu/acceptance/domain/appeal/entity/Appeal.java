@@ -7,7 +7,6 @@ import lagavu.acceptance.domain.customer.entity.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -41,7 +40,12 @@ public abstract class Appeal {
     @CreatedDate
     protected Date createdDate;
 
-    public Appeal(int sum, Currency currency, float rate, Customer customer) {
+    public Appeal(
+            Integer sum,
+            Currency currency,
+            Float rate,
+            Customer customer
+    ) {
         this.sum = sum;
         this.currency = currency;
         this.rate = rate;
@@ -49,7 +53,7 @@ public abstract class Appeal {
         this.createdDate = new Date();
     }
 
-    public abstract boolean isVerify(Customer customer);
+    public abstract Boolean isVerify(Customer customer);
 
     public Float getOutputSum() {
         return sum * rate;

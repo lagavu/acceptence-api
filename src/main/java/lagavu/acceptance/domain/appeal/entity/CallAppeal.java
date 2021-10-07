@@ -5,7 +5,6 @@ import lagavu.acceptance.domain.appeal.entity.value_object.AppealType;
 import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import lombok.*;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -26,9 +25,9 @@ public class CallAppeal extends Appeal {
     private String callerPhoneNumber;
 
     public CallAppeal(
-            int sum,
+            Integer sum,
             Currency currency,
-            float rate,
+            Float rate,
             Customer customer,
             Boolean isVerifiedSmsConfirmation,
             String callerPhoneNumber
@@ -40,7 +39,6 @@ public class CallAppeal extends Appeal {
     }
 
     public Boolean isVerifiedSmsConfirmation() {
-
         return isVerifiedSmsConfirmation;
     }
 
@@ -49,7 +47,7 @@ public class CallAppeal extends Appeal {
     }
 
     @Override
-    public boolean isVerify(Customer customer) {
+    public Boolean isVerify(Customer customer) {
         return Objects.equals(this.callerPhoneNumber, customer.getPhoneNumber())
                 && isVerifiedSmsConfirmation;
     }

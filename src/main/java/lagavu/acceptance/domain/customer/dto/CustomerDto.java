@@ -11,21 +11,21 @@ import java.util.List;
 @Setter
 public class CustomerDto {
 
-    private long id;
+    private Long id;
 
     private String name;
 
     private Gender gender;
 
-    private int availableAmountOfDollars;
+    private Integer availableAmountOfDollars;
 
     private String phoneNumber;
 
-    private int accountId;
+    private Integer accountId;
 
-    private int numberDocument;
+    private Integer numberDocument;
 
-    private int countAppeal;
+    private Integer countAppeal;
 
     private List<AppealDto> appealsDto;
 }

@@ -1,6 +1,7 @@
 package lagavu.acceptance.domain.appeal.entity.value_object;
 
 public enum Currency {
+
     USD("USD"),
     EUR("EUR"),
     CHF("CHF"),

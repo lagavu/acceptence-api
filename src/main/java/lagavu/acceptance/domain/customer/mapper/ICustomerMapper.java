@@ -22,7 +22,6 @@ public interface ICustomerMapper {
         customerDto.setNumberDocument(customer.getNumberDocument());
         customerDto.setCountAppeal(customer.getAppeals().size());
         customerDto.setAppealsDto(IAppealMapper.INSTANCE.mapAppealsToAppealDtoList(customer.getAppeals()));
-
         return customerDto;
     }
 }

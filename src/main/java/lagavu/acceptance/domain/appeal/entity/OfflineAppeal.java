@@ -6,7 +6,6 @@ import lagavu.acceptance.domain.appeal.entity.value_object.Currency;
 import lagavu.acceptance.domain.customer.entity.Customer;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -28,14 +27,15 @@ public class OfflineAppeal extends Appeal {
     private Integer numberDocument;
 
     public OfflineAppeal(
-            int sum,
+            Integer sum,
             Currency currency,
-            float rate,
+            Float rate,
             Customer customer,
             Boolean isVerifiedDocumentProvided,
-            int numberDocument
+            Integer numberDocument
     ) {
         super(sum, currency, rate, customer);
+
         this.isVerifiedDocumentProvided = isVerifiedDocumentProvided;
         this.numberDocument = numberDocument;
     }
@@ -63,7 +63,7 @@ public class OfflineAppeal extends Appeal {
     }
 
     @Override
-    public boolean isVerify(Customer customer) {
+    public Boolean isVerify(Customer customer) {
         return Objects.equals(this.numberDocument, customer.getNumberDocument())
                 && isVerifiedDocumentProvided;
     }
