@@ -28,6 +28,7 @@ ____
 #### Technologies
 - Java 16
 - Spring Boot
+- Hibernate
 - Maven
 - Postgres
 - Docker
